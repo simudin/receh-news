@@ -4,6 +4,7 @@ module Mutations
 
     field :token, String, null: true
     field :user, Types::UserType, null: true
+    field :errors, [String], null: false
 
     def resolve(credentials:)
       email = credentials[:email]
@@ -20,7 +21,12 @@ module Mutations
 
         {
           user: user,
-          token: token
+          token: token,
+          errors: []
+        }
+      else
+        {
+          errors: ["Can't login"]
         }
       end
     end
