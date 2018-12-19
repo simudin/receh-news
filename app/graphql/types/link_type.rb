@@ -3,5 +3,7 @@ module Types
     field :id, ID, null: false
     field :url, String, null: false
     field :description, String, null: false
+    field :user, Types::UserType, null: true
+    field :votes, [Types::VoteType], null: true
   end
 end

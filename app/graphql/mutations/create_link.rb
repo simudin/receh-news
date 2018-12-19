@@ -7,7 +7,11 @@ module Mutations
     field :errors, [String], null: false
 
     def resolve(url:, description:)
-      link = Link.new(url: url, description: description)
+      link = Link.new(
+        url: url,
+        description: description,
+        user: context[:current_user]
+      )
 
       if link.save
         {
